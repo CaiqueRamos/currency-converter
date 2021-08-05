@@ -77,14 +77,12 @@ const init = async () => {
     })
     selectorOne.addEventListener('input', async (e) => {
         const internalExchangeRate = { ...(await fetchExchangeRate(getUrl(e.target.value))) }
-
-
         exchangeResult.value = await exchangeParam.value * internalExchangeRate.conversion_rates[selectorTwo.value];
+
     })
     selectorTwo.addEventListener('input', e => {
-        const internalExchangeRate = internalExchangeRate.conversion_rates[e.target.value];
-        exchangeResult.value = exchangeParam.value * internalExchangeRate;
-
+        const currencyTwoValue = internalExchangeRate.conversion_rates[e.target.value];
+        exchangeResult.value = exchangeParam.value * currencyTwoValue;
     })
 
 }
